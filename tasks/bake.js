@@ -314,7 +314,19 @@ module.exports = function( grunt ) {
 
 			checkFile( src );
 
-			var values = options.content ? grunt.file.readJSON( options.content ) : {};
+
+			var values = {};
+
+			// Options.content is an object, then copy to values
+			console.log(typeof options.content);
+			if ( typeof options.content == "object" ) {
+				values = options.content;	
+			}
+			else {
+				// otherwise, is a file
+				values = options.content ? grunt.file.readJSON( options.content ) : {};
+			}
+			
 
 			if ( options.section ) {
 
