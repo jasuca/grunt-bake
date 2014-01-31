@@ -107,7 +107,8 @@ module.exports = function( grunt ) {
 		// Helper method to resolve nested placeholder names like: "home.footer.text"
 
 		function resolveName( name, values ) {
-			return mout.object.get( values, name ) || "";
+			var current = mout.object.get( values, name );
+			return current === undefined ? "" : current;
 		}
 
 
@@ -318,7 +319,6 @@ module.exports = function( grunt ) {
 			var values = {};
 
 			// Options.content is an object, then copy to values
-			console.log(typeof options.content);
 			if ( typeof options.content == "object" ) {
 				values = options.content;	
 			}
